@@ -1,8 +1,5 @@
-package Employee;
-/**
- *
- * @author mysti
- */
+package APCompSci.Employee;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class EmployeeTest {
