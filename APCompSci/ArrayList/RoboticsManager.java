@@ -1,12 +1,19 @@
 package APCompSci.ArrayList;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class RoboticsManager {
     public static void main(String[] args) {
+        FileManager fileManager = new FileManager();
         Scanner input = new Scanner(System.in);
-        new Robotics(20, "Rocketeers", "NY", "Shenendehowa", 1992);
-        new Robotics(2791, "Shaker Robotics", "NY", "Shaker High School", 2009);
+        ArrayList<Robotics> team = new ArrayList<>();
+        // team.add(new Robotics(20, "Rocketeers", "NY", "Shenendehowa", 1992));
+        // team.add(new Robotics(2791, "Shaker Robotics", "NY", "Shaker High School", 2009));
         System.out.flush();
         while (true) {
             System.out.println(
@@ -20,14 +27,16 @@ public class RoboticsManager {
                             "Country or State", "High School", "Rookie Year");
                     System.out.println(
                             " -------------------------------------------------------------------------------------------------------------------------- ");
-                    for (int i = 0; i < Robotics.teamNumber.size(); i++) {
+                    for (int i = 0; i < team.size(); i++) {
                         System.out.printf("| %-5d | %-6d | %-40s | %-18s | %-25s | %-11d | %n", i,
-                                Robotics.teamNumber.get(i), Robotics.teamName.get(i),
-                                Robotics.teamCountryOrState.get(i),
-                                Robotics.teamHighSchool.get(i), Robotics.teamRookieYear.get(i));
+                                team.get(i).teamNumber, team.get(i).teamName,
+                                team.get(i).teamCountryOrState,
+                                team.get(i).teamHighSchool, team.get(i).teamRookieYear);
                     }
                     break;
                 case 2: // Load in from disk file TODO
+                    // fileManager.load();
+                    read(team);
                     break;
                 case 3: // Add new team
                     System.out.println("Team Number?");
@@ -43,7 +52,7 @@ public class RoboticsManager {
                     int newTRY = input.nextInt();
                     new Robotics(newTNu, newTN, newTCOS, newTHS, newTRY);
                     break;
-                case 4: // Edit existing team TODO
+                case 4: // Edit existing team
                     System.out.println("What team do you want to edit - ID number NOT actual team number?");
                     int tempI = input.nextInt();
                     System.out.println(
@@ -54,47 +63,81 @@ public class RoboticsManager {
                         case 1:
                             System.out.println("To what?");
                             int newTempNum = input.nextInt();
-                            Robotics.teamNumber.set(tempI, newTempNum);
+                            team.get(tempI).teamNumber = newTempNum;
                             break;
                         case 2:
                             System.out.println("To what?");
                             String newTempName = input.nextLine();
-                            Robotics.teamName.set(tempI, newTempName);
+                            team.get(tempI).teamName = newTempName;
                             break;
                         case 3:
                             System.out.println("To what?");
                             String newTempPlace = input.nextLine();
-                            Robotics.teamCountryOrState.set(tempI, newTempPlace);
+                            team.get(tempI).teamCountryOrState = newTempPlace;
                             break;
                         case 4:
                             System.out.println("To what?");
                             String newTempHS = input.nextLine();
-                            Robotics.teamHighSchool.set(tempI, newTempHS);
+                            team.get(tempI).teamHighSchool = newTempHS;
                             break;
                         case 5:
                             System.out.println("To what?");
                             int newTempRY = input.nextInt();
-                            Robotics.teamRookieYear.set(tempI, newTempRY);
+                            team.get(tempI).teamRookieYear = newTempRY;
                             break;
                     }
                     break;
-                case 5: // Remove a team TODO
+                case 5: // Remove a team
                     System.out.println("What team do you want to delete - ID number NOT actual team number?");
                     int tempA = input.nextInt();
-                    Robotics.teamNumber.remove(tempA);
-                    Robotics.teamName.remove(tempA);
-                    Robotics.teamCountryOrState.remove(tempA);
-                    Robotics.teamHighSchool.remove(tempA);
-                    Robotics.teamRookieYear.remove(tempA);
+                    team.remove(tempA);
                     break;
                 case 6: // Sort the list TODO
                     break;
                 case 7: // Save the list to a file TODO
+                    save(team, fileManager);
                     break;
                 case 8: // Exit
                     System.out.println("Rude.");
                     System.exit(0);
             }
+        }
+    }
+
+    public static void save(ArrayList<Robotics> team, FileManager fileManager) {
+        String toSave = "";
+        for (int i = 0; i < team.size(); i++) {
+            // toSave += "New:";
+            // toSave += "|" + team.get(i).teamNumber + "|";
+            toSave += "|" + team.get(i).teamNumber;
+            toSave += "|" + team.get(i).teamName;
+            toSave += "|" + team.get(i).teamCountryOrState;
+            toSave += "|" + team.get(i).teamHighSchool;
+            toSave += "|" + team.get(i).teamRookieYear + "|\n";
+        }
+        fileManager.save(toSave);
+    }
+    public static void read(ArrayList<Robotics> tempTeamList){
+        try{
+            BufferedReader input = new BufferedReader(new FileReader("Team.txt"));
+
+            String line; 
+            line = input.readLine();
+            while(line != null){
+                StringTokenizer st = new StringTokenizer(line, "|");
+                int tempNum = Integer.parseInt(st.nextToken());
+                String tempName = st.nextToken();
+                String tempCOS = st.nextToken();
+                String tempHS = st.nextToken();
+                int tempRY = Integer.parseInt(st.nextToken());
+
+                tempTeamList.add(new Robotics(tempNum, tempName, tempCOS, tempHS, tempRY));  
+
+                line = input.readLine();
+            }
+            input.close();
+        } catch (Exception e){
+            System.out.println(e.toString());
         }
     }
 }

@@ -3,11 +3,11 @@ package APCompSci.ArrayList;
 import java.util.ArrayList;
 
 public class Robotics {
-    public static ArrayList<Integer> teamNumber = new ArrayList<>();
-    public static ArrayList<String> teamName = new ArrayList<>();
-    public static ArrayList<String> teamCountryOrState = new ArrayList<>();
-    public static ArrayList<String> teamHighSchool = new ArrayList<>();
-    public static ArrayList<Integer> teamRookieYear = new ArrayList<>();
+    public int teamNumber;
+    public String teamName;
+    public String teamCountryOrState;
+    public String teamHighSchool;
+    public int teamRookieYear;
 
     public static ArrayList<Robotics> team = new ArrayList<>();
 
@@ -15,11 +15,7 @@ public class Robotics {
      * Constructor that clears all the arrays
      */
     Robotics(){
-        teamNumber.clear();
-        teamName.clear();
-        teamCountryOrState.clear();
-        teamHighSchool.clear();
-        teamRookieYear.clear();
+        team.clear();
     }
 
     /**
@@ -33,25 +29,10 @@ public class Robotics {
      */
     Robotics(int tNu, String tN, String tCS, String tHS,
             int rY) {
-                teamNumber.add(tNu);
-                teamName.add(tN);
-                teamCountryOrState.add(tCS);
-                teamHighSchool.add(tHS);
-                teamRookieYear.add(rY);
+                this.teamNumber = tNu;
+                this.teamName = tN;
+                this.teamCountryOrState = tCS;
+                this.teamHighSchool = tHS;
+                this.teamRookieYear = rY;
     }
-    // public static ArrayList<Integer> getTeamNumber(){
-    //     return teamNumber;
-    // }
-    // public static ArrayList<String> getTeamName() {
-    //     return teamName;
-    // }
-    // public static ArrayList<String> getTeamCountryOrState() {
-    //     return teamCountryOrState;
-    // }
-    // public static ArrayList<String> getTeamHighSchool() {
-    //     return teamHighSchool;
-    // }
-    // public static ArrayList<Integer> getTeamRookieYear() {
-    //     return teamRookieYear;
-    // }
 }

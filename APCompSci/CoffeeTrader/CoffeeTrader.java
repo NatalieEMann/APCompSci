@@ -44,6 +44,14 @@ public class CoffeeTrader {
                 }
             }
 
+            if(smallBoxCount == 2){
+                mediumBoxCount ++;
+                smallBoxCount = smallBoxCount-2;
+            } else if(mediumBoxCount == 2){
+                largeBoxCount++;
+                mediumBoxCount = mediumBoxCount-2;
+            }
+
             System.out.println("--------------------------------------------------\nLarge Boxes: " + largeBoxCount + "\nMedium Boxes: " + mediumBoxCount + "\nSmall Boxes: "
                     + smallBoxCount + "\nTotal Cost: $" + cost);
             largeBoxCount = 0;
