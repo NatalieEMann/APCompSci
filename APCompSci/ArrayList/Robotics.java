@@ -2,7 +2,8 @@ package APCompSci.ArrayList;
 
 import java.util.ArrayList;
 
-public class Robotics {
+@SuppressWarnings("rawtypes")
+public class Robotics implements Comparable {
     public int teamNumber;
     public String teamName;
     public String teamCountryOrState;
@@ -34,5 +35,16 @@ public class Robotics {
                 this.teamCountryOrState = tCS;
                 this.teamHighSchool = tHS;
                 this.teamRookieYear = rY;
+    }
+
+    @Override
+    public int compareTo(Object other) {
+            Robotics t = (Robotics)other;
+            if(this.teamName.compareTo(t.teamName)<0) {
+                return -1; 
+        } else if(this.teamName.compareTo(t.teamName)>0){
+            return 0;
+        }
+        return 1;
     }
 }

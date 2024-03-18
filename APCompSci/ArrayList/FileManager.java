@@ -19,7 +19,8 @@ public class FileManager {
             e.printStackTrace();
         }
     }
-    public String load() {
+    public String load(boolean isDefault) {
+        if(!isDefault){
             try {
                 BufferedReader reader = new BufferedReader(new FileReader("Team.txt"));
                 String fileString = reader.readLine();
@@ -28,6 +29,17 @@ public class FileManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+    } else {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("TeamDefault.txt"));
+            String fileString = reader.readLine();
+            reader.close();
+            return fileString;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
         return null;
     }
-}
+        
+    }

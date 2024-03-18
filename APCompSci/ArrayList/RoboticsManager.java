@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -12,6 +13,12 @@ public class RoboticsManager {
         FileManager fileManager = new FileManager();
         Scanner input = new Scanner(System.in);
         ArrayList<Robotics> team = new ArrayList<>();
+        boolean useDefaultFile;
+        if (input.nextInt() == 2) {
+            useDefaultFile = false;
+        } else {
+            useDefaultFile = true;
+        }
         // team.add(new Robotics(20, "Rocketeers", "NY", "Shenendehowa", 1992));
         // team.add(new Robotics(2791, "Shaker Robotics", "NY", "Shaker High School", 2009));
         System.out.flush();
@@ -34,8 +41,8 @@ public class RoboticsManager {
                                 team.get(i).teamHighSchool, team.get(i).teamRookieYear);
                     }
                     break;
-                case 2: // Load in from disk file TODO
-                    // fileManager.load();
+                case 2: // Load in from disk file TODO works?
+                    fileManager.load(useDefaultFile);
                     read(team);
                     break;
                 case 3: // Add new team
@@ -53,6 +60,20 @@ public class RoboticsManager {
                     new Robotics(newTNu, newTN, newTCOS, newTHS, newTRY);
                     break;
                 case 4: // Edit existing team
+                    // print
+                    System.out.println(
+                            " -------------------------------------------------------------------------------------------------------------------------- ");
+                    System.out.printf("| %-5s | %6s | %-40s | %-18s | %-25s | %-11s | %n", " ", "Team #", "Team Name",
+                            "Country or State", "High School", "Rookie Year");
+                    System.out.println(
+                            " -------------------------------------------------------------------------------------------------------------------------- ");
+                    for (int i = 0; i < team.size(); i++) {
+                        System.out.printf("| %-5d | %-6d | %-40s | %-18s | %-25s | %-11d | %n", i,
+                                team.get(i).teamNumber, team.get(i).teamName,
+                                team.get(i).teamCountryOrState,
+                                team.get(i).teamHighSchool, team.get(i).teamRookieYear);
+                    }
+                    // end of print
                     System.out.println("What team do you want to edit - ID number NOT actual team number?");
                     int tempI = input.nextInt();
                     System.out.println(
@@ -88,16 +109,32 @@ public class RoboticsManager {
                     }
                     break;
                 case 5: // Remove a team
+                    // print
+                    System.out.println(
+                            " -------------------------------------------------------------------------------------------------------------------------- ");
+                    System.out.printf("| %-5s | %6s | %-40s | %-18s | %-25s | %-11s | %n", " ", "Team #", "Team Name",
+                            "Country or State", "High School", "Rookie Year");
+                    System.out.println(
+                            " -------------------------------------------------------------------------------------------------------------------------- ");
+                    for (int i = 0; i < team.size(); i++) {
+                        System.out.printf("| %-5d | %-6d | %-40s | %-18s | %-25s | %-11d | %n", i,
+                                team.get(i).teamNumber, team.get(i).teamName,
+                                team.get(i).teamCountryOrState,
+                                team.get(i).teamHighSchool, team.get(i).teamRookieYear);
+                    } 
+                    // print end  
                     System.out.println("What team do you want to delete - ID number NOT actual team number?");
                     int tempA = input.nextInt();
                     team.remove(tempA);
                     break;
                 case 6: // Sort the list TODO
+                    Collections.sort(team);
                     break;
                 case 7: // Save the list to a file TODO
                     save(team, fileManager);
                     break;
                 case 8: // Exit
+                    save(team, fileManager);
                     System.out.println("Rude.");
                     System.exit(0);
             }
