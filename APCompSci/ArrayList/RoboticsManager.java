@@ -14,10 +14,10 @@ public class RoboticsManager {
         Scanner input = new Scanner(System.in);
         ArrayList<Robotics> team = new ArrayList<>();
         boolean useDefaultFile;
-        System.out.println("Use Default File? (1 = yes, 2 = no)");
+        System.out.println("Use Default File? (other # = yes, 2 = no)");
         if (input.nextInt() == 2) {
             useDefaultFile = false;
-        } else if(input.nextInt() == 1){
+        } else {
             useDefaultFile = true;
         }
         // team.add(new Robotics(20, "Rocketeers", "NY", "Shenendehowa", 1992))
