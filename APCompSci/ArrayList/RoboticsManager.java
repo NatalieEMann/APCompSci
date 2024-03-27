@@ -58,8 +58,8 @@ public class RoboticsManager {
                     String newTHS = input.nextLine();
                     System.out.println("Team Rookie Year?");
                     int newTRY = input.nextInt();
-                    new Robotics(newTNu, newTN, newTCOS, newTHS, newTRY);
-                    break;
+                    team.add(new Robotics(newTNu, newTN, newTCOS, newTHS, newTRY));
+                    break; 
                 case 4: // Edit existing team
                     // print
                     System.out.println(

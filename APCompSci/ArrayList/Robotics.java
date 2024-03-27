@@ -10,14 +10,14 @@ public class Robotics implements Comparable {
     public String teamHighSchool;
     public int teamRookieYear;
 
-    public static ArrayList<Robotics> team = new ArrayList<>();
+    // public static ArrayList<Robotics> team = new ArrayList<>();
 
     /**
      * Constructor that clears all the arrays
      */
-    Robotics(){
-        team.clear();
-    }
+    // Robotics(){
+    //     team.clear();
+    // }
 
     /**
      * Takes in a bunch of elements about the team and sets it into the array
