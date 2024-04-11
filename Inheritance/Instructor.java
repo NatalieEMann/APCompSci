@@ -1,4 +1,4 @@
-package HW;
+package Inheritance;
 
 public class Instructor extends Person{
 

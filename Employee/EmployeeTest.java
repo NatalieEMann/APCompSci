@@ -1,4 +1,4 @@
-package APCompSci.Employee;
+package Employee;
 
 import java.util.ArrayList;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package APCompSci.ArrayList;
+package ArrayList;
 
 import java.util.ArrayList;
 

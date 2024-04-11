@@ -1,4 +1,4 @@
-package APCompSci.CoffeeTrader;
+package CoffeeTrader;
 
 import java.util.Scanner;
 

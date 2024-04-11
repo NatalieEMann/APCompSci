@@ -1,4 +1,4 @@
-package APCompSci.Employee;
+package Employee;
 
 public class Employee {
     //static variable to keep track of total employees and salaries

@@ -1,4 +1,5 @@
 package PNZ;
+
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -9,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author mysti
  */
-public class PNZFromNetBeans extends javax.swing.JFrame {
+public class PNZGame extends javax.swing.JFrame {
 
     String guess = "";
     String actual = randomString();
@@ -17,9 +18,8 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
     /**
      * Creates new form PNZGame
      */
-    public PNZFromNetBeans() {
+    public PNZGame() {
         initComponents();
-        startNewGame();
     }
 
     public static char randomDigit() {
@@ -34,12 +34,14 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
                 num = randomDigit();
                 if ((finalNumber.charAt(0) != num) && (finalNumber.charAt(1) != num)
                         && (finalNumber.charAt(2) != num)) {
+                    finalNumber = num + finalNumber;
                 } else {
                     num = '-';
                 }
-                finalNumber = num + finalNumber;
+                
             } while (num == '-');
         }
+        System.out.println(finalNumber.substring(0, 3));
         return finalNumber.substring(0, 3);
     }
 
@@ -66,37 +68,25 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
         if (nNum == 0) {
             feedback = "Z";
         }
+        if(feedback.equals("PPP")){
+            feedback = "WON!";
+        }
         return feedback;
     }
 
-    public static void displayResults(String guess, String result) {
-        // GUI stuff
-        System.out.println("Guess:" + guess + " | Actual:" + result);
-    }
-
     public void startNewGame() {
-        // GUI stuff
-//        do {
-//            if (evaluateButton.isEnabled()) {
-//                guess = jGuessText.getText();
-//                String feedback = evaluateGuess(guess, actual);
-//                putInTable(guess, feedback);
-//            }
-//        } while (!actual.equals(guess));
-//        displayResults(guess, actual);
+        if(jNewGame.isEnabled()){
+            System.out.println("Reset");
+            super.getContentPane().removeAll();
+            repaint();
+            initComponents();
+            actual = randomString();
+        }
     }
 
-    public void putInTable(String guess, String feedback) {
+    public void displayResults(String guess, String feedback) {
         String[][] toPutIn = {{guess, feedback}};
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-
-//            for (int i = 0; i < toPutIn.length; i++) {
-//                String[] row = new String[toPutIn[i].length];
-//                for (int j = 0; j < toPutIn[i].length; j++) {
-//                    row[j] = toPutIn[i][j];
-//                }
-//                model.addRow(row);
-//            }
         for (String[] row : toPutIn) {
             model.addRow(row);
         }
@@ -115,6 +105,7 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         evaluateButton = new javax.swing.JButton();
+        jNewGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -150,6 +141,13 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
             }
         });
 
+        jNewGame.setText("New Game");
+        jNewGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jNewGameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,15 +161,22 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
                         .addGap(337, 337, 337)
                         .addComponent(jGuessText, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
+                        .addGap(31, 31, 31)
+                        .addComponent(jNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(183, 183, 183)
                         .addComponent(evaluateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(evaluateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(evaluateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addComponent(jGuessText, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -187,12 +192,16 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
             if ((jGuessText.getText()).length() == 3) {
                 guess = jGuessText.getText();
                 String feedback = evaluateGuess(guess, actual);
-                putInTable(guess, feedback);
+                displayResults(guess, feedback);
             } else {
                 jGuessText.setText("ERROR");
             }
         }
     }//GEN-LAST:event_evaluateButtonActionPerformed
+
+    private void jNewGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewGameActionPerformed
+        startNewGame();
+    }//GEN-LAST:event_jNewGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,21 +220,20 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PNZFromNetBeans.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PNZGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PNZFromNetBeans.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PNZGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PNZFromNetBeans.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PNZGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PNZFromNetBeans.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PNZGame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new PNZFromNetBeans().setVisible(true);
+                new PNZGame().setVisible(true);
             }
 
         });
@@ -234,6 +242,7 @@ public class PNZFromNetBeans extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton evaluateButton;
     private javax.swing.JTextField jGuessText;
+    private javax.swing.JButton jNewGame;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
