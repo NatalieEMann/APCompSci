@@ -61,7 +61,7 @@ public class TidBit {
             finalInterest = finalInterest + interest;
         }
         System.out.printf("\n==========================================================================================\nTotal Interest Paid: $%-,10.2f \n==========================================================================================", finalInterest);
-
+        input.close();
     }
 }
 

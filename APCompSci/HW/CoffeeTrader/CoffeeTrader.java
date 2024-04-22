@@ -57,6 +57,8 @@ public class CoffeeTrader {
             largeBoxCount = 0;
             mediumBoxCount = 0;
             smallBoxCount = 0;
+            scanner.close();
         }
+        
     }
 }

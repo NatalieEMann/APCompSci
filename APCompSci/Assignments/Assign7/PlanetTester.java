@@ -27,5 +27,7 @@ public class PlanetTester {
         Earth.addDays(days);
         Mars.addDays(days);
         System.out.println("Days Passed: " + Planet.daysAdd);
+        
+        input.close();
     }
 }

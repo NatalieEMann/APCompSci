@@ -30,6 +30,7 @@ public class TaxCalc {
         System.out.println("Here are your taxes."+ incomeTax);
         System.out.println("Don't forget to pay them.");
         System.out.println("I will come for you if you don't.");
+        input.close();
     }
     
 }

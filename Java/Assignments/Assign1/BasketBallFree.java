@@ -32,10 +32,8 @@ public class BasketBallFree {
                int end=input.nextInt();
                calcOn=(end!=2);  
              
-                     
+                input.close();      
              }
-             
-             
         }
 }
         

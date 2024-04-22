@@ -57,6 +57,7 @@ public class Arrays {
                     left = left - amt1[i];
                 }
             }
+            input.close();
         }
     }
 }

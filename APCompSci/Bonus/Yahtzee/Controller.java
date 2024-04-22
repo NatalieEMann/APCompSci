@@ -79,6 +79,7 @@ public class Controller {
 
     }
 
+    @SuppressWarnings("unused")
     public static void turn(int player) {
         int rollCount = 0;
         int[] dice = new int[5];

@@ -54,5 +54,6 @@ public class InvestementHW {
             System.out.println(y + "\t" + iStart + "\t" + Math.round(iStart * rate) + "\t" + (iStart + Math.round(iStart * rate)));
             iStart = iStart + Math.round(iStart * rate);
         }
+        input.close();
     }
 }

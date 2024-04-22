@@ -95,5 +95,6 @@ public class Gold1Problem2023 {
             case 9:
                 break;
         }
+        input.close();
     }
 }

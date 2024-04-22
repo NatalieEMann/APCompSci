@@ -1,7 +1,6 @@
 package APCompSci.Bonus.PNZ;
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class PNZ {
     public PNZ(){
@@ -66,5 +65,6 @@ public class PNZ {
         
         } while(!actual.equals(guess));
         displayResults(guess, actual);
+        input.close();
     }
 }

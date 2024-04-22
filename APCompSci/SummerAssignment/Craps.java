@@ -27,6 +27,7 @@ import java.util.Scanner;
 public class Craps {
 
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
         int point, sum, bet, dice1, dice2; // variables to use
         int chips = 100; // starter chips 
 
@@ -78,6 +79,7 @@ public class Craps {
         if(chips == 0){ // if you are broke, the game is over
             System.out.println("------------------------ Game Over ------------------------");
         }
+        input.close();
     }
 }
 

@@ -20,7 +20,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.io.InputStreamReader;
-import java.text.DecimalFormat;
 
 public class StringMethods {
 

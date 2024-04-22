@@ -20,7 +20,7 @@ public class FindAverage {
             double num = 0;
             double[] i = new double[100];
             int far = 0;
-            while (1 == 1) {
+            while (true) {
                 System.out.println("Input -1 to calculate average.\nInput a grade: ");
                 i[far] = input.nextDouble();
                 if (smallest > i[far]) {
@@ -74,7 +74,7 @@ public class FindAverage {
                 }
             }*/
         if (choice == 3) {
-            while (1 == 1) {
+            while (true) {
                 System.out.println("\nPlease enter number of bagels > 0, -1 to quit");
                 double bagels = input.nextDouble();
                 if (bagels == -1) {
@@ -109,5 +109,6 @@ public class FindAverage {
                 }
             }
         }*/
+        input.close();
     }
 }

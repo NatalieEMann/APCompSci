@@ -3,6 +3,7 @@ package APCompSci.ClassWork.Employee;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class EmployeeTest {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         ArrayList emps = new ArrayList();
@@ -45,6 +46,7 @@ public class EmployeeTest {
             System.out.println(emps.get(i));
         }
         System.out.println("----------------------------------------------------");
+        input.close();
     }
 }
 

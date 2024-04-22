@@ -30,7 +30,7 @@ public class FootMeter {
         calcOn=(1!=cont);
         int end=input.nextInt();
         calcOn=(end!=2);
-        
+        input.close();
         }   
 }
 }

@@ -25,7 +25,7 @@ public class Tester {
             Instructor b = new Instructor(n, bY, s);
             System.out.println(b.toString());
         }
-        
+        input.close();
     }
 
 }

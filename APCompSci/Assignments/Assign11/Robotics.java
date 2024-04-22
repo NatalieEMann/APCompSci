@@ -1,7 +1,5 @@
 package APCompSci.Assignments.Assign11;
 
-import java.util.ArrayList;
-
 @SuppressWarnings("rawtypes")
 public class Robotics implements Comparable {
     public int teamNumber;

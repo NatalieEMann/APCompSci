@@ -32,6 +32,7 @@ public class Copying {
     String[] no = new String[SIZE];
 
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
         Copying c = new Copying();
     }
 
@@ -55,6 +56,7 @@ public class Copying {
     public void menu() {
 
         while (true) {
+            @SuppressWarnings("unused")
             Date now = new Date();
             System.out.print("\t\t" + ul);
             for (int i = 0; i < 50; i++) {

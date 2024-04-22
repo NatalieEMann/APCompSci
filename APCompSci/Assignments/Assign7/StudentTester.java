@@ -35,5 +35,6 @@ public class StudentTester {
             s.addQuiz(input.nextInt());
 
         }
+        input.close();
     }
 }

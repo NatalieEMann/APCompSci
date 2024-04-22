@@ -38,6 +38,7 @@ public class CylinderTester {
             } else if (i == 0) {
                 System.exit(0);
             }
+            input.close();
         }
     }
 }

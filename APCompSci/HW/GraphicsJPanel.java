@@ -17,10 +17,6 @@ package APCompSci.HW;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import java.util.HashSet;
-import java.util.Set;
 
 public class GraphicsJPanel extends JPanel implements ActionListener {
 

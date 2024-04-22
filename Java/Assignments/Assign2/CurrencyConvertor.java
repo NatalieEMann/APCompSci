@@ -117,6 +117,6 @@ public class CurrencyConvertor {
             calcOn = (cont != 1);
 
         }
-
+        input.close();
     }
 }

@@ -100,6 +100,7 @@ class Main {
                     sum = sum * 2;
                 }
             }
+            input.close();
         }
     }
 }

@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class CarTester {
     public static void main(String[] args) {
+       
         while(true){
         Scanner input = new Scanner(System.in);
         Car myBeemer = new Car("Beemer", 29); // declaring the object
@@ -37,7 +38,7 @@ public class CarTester {
                 c1.drive(distance);
             System.out.println(c1);
         }
-        
+        input.close();
     }
     }
 }

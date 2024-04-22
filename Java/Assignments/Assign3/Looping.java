@@ -131,7 +131,7 @@ public class Looping {
                 int far = 0;
                 double num = 0;
                 double i = 0;
-                while (1 == 1) {
+                while (true) {
                     System.out.println("Input a number: \nInput -1 to calculate average.");
                     i = input.nextDouble();
                     if (i == -1) { //when -1 is inputted it will go through the calculations
@@ -311,6 +311,7 @@ public class Looping {
                 int Cap = input.nextInt();
                 int r;
                 int c;
+                @SuppressWarnings("unused")
                 int h;
                 int i;
                 System.out.print(" \t|");
@@ -333,5 +334,6 @@ public class Looping {
             }
 
         }
+        input.close();
     }
 }

@@ -2,13 +2,13 @@ package APCompSci.Assignments.Assign11;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class RoboticsManager {
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) {
         FileManager fileManager = new FileManager();
         Scanner input = new Scanner(System.in);
@@ -42,7 +42,7 @@ public class RoboticsManager {
                                 team.get(i).teamHighSchool, team.get(i).teamRookieYear);
                     }
                     break;
-                case 2: // Load in from disk file TODO works?
+                case 2: // Load in from disk file 
                     fileManager.load(useDefaultFile);
                     read(team);
                     break;
@@ -128,10 +128,10 @@ public class RoboticsManager {
                     int tempA = input.nextInt();
                     team.remove(tempA);
                     break;
-                case 6: // Sort the list TODO
+                case 6: // Sort the list 
                     Collections.sort(team);
                     break;
-                case 7: // Save the list to a file TODO
+                case 7: // Save the list to a file 
                     save(team, fileManager);
                     break;
                 case 8: // Exit
@@ -139,6 +139,7 @@ public class RoboticsManager {
                     System.out.println("Rude.");
                     System.exit(0);
             }
+            input.close();
         }
     }
 

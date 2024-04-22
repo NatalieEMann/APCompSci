@@ -38,6 +38,7 @@ public class PerfectNumberDecider {
         } else if (sum < num) {
             System.out.println(num + " is deficient");
         }
+        input.close();
     }
 }
 

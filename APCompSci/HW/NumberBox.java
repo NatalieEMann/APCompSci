@@ -96,6 +96,7 @@ public class NumberBox {
                 }
                 System.out.print("+");
             }
+            keyboard.close();
         }
     }
 }

@@ -67,5 +67,6 @@ class Change{
 		System.out.println(Math.floor(Dimes) + " dime(s)");
 		System.out.println(Math.floor(Nickels) + " nickel(s)");
 		System.out.println(Math.floor(Pennies) + " penny(pennies)");
+		input.close();
   }
 }

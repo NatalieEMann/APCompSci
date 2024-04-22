@@ -76,5 +76,6 @@ class ChangeMaker{
 		System.out.println(Math.floor(Dimes) + " dime(s)");
 		System.out.println(Math.floor(Nickels) + " nickel(s)");
 		System.out.println(Math.round(Pennies) + " penny(pennies)");
+		input.close();
   }
 }

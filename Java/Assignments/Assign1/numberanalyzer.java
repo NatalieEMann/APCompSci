@@ -42,6 +42,7 @@ class numberanalyzer {
                        counter=counter-1;
         }
                     System.out.println("Your GCF is "+ counter);
+                    input.close();
 }
 }
 

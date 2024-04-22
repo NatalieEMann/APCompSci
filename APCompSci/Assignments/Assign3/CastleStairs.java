@@ -48,6 +48,7 @@ public class CastleStairs {
         } else if (choice == 2) {
             System.out.println("Type in an integer 1 - 100 to create a stadium.");
         }
+        input.close();
     }
 }
 

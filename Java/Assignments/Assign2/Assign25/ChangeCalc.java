@@ -48,5 +48,6 @@ public class ChangeCalc {
 		System.out.println(Dimes + " dime(s)");
 		System.out.println(Nickels + " nickel(s)");
 		System.out.println(Pennies + " penny(pennies)");
+		input.close();
   }
 }   

@@ -22,6 +22,7 @@ public class GraphicsRunner {
         jf.setResizable(false);
         jf.setSize(515, 565);
 
+        @SuppressWarnings("unused")
         Container c = jf.getContentPane();
         JButton nextPix = new JButton("New Picture");
 

@@ -61,41 +61,49 @@ public class Assign5Tester {
                 }
                 case 3 -> {
                     System.out.println("Please type in # between 1 (inc) and 10 (inc)");
+                    @SuppressWarnings("unused")
                     int value = intVer1.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 4 -> {
                     System.out.println("Please type in # between -3 (exc) and 10 (inc)");
+                    @SuppressWarnings("unused")
                     int value = intVer2.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 5 -> {
                     System.out.println("Please type in # between 0 (inc) and 10 (exc)");
+                    @SuppressWarnings("unused")
                     int value = intVer3.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 6 -> {
                     System.out.println("Please type in # between 1 (exc) and 100 (exc)");
+                    @SuppressWarnings("unused")
                     int value = intVer4.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 7 -> {
                     System.out.println("Please type in # between 0 (inc) and .1 (inc)");
+                    @SuppressWarnings("unused")
                     double value2 = doubleVer1.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 8 -> {
                     System.out.println("Please type in # between 0 (exc) and .1 (inc)");
+                    @SuppressWarnings("unused")
                     double value2 = doubleVer2.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 9 -> {
                     System.out.println("Please type in # between 0 (inc) and 1.7 (exc)");
+                    @SuppressWarnings("unused")
                     double value2 = doubleVer3.readAndVerify();
                     System.out.println("GOLDEN");
                 }
                 case 10 -> {
                     System.out.println("Please type in # between -1.6 (exc) and 198.2 (exc)");
+                    @SuppressWarnings("unused")
                     double value2 = doubleVer4.readAndVerify();
                     System.out.println("GOLDEN");
                 }
