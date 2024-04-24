@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign3;
+
 /*------------------------------------------------
 File: together.java
 Date: Oct 18, 2022

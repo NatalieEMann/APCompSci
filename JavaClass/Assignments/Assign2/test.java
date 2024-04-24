@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign2;
+
 /*------------------------------------------------
 File: test.java
 Date: Sep 30, 2022

@@ -1,3 +1,5 @@
+package JavaClass.HW;
+
 /*------------------------------------------------
 File: InvestementHW.java
 Date: Oct 28, 2022

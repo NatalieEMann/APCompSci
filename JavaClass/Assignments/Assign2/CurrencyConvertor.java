@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign2;
+
 /*------------------------------------------------
 File: CurrencyConvertor.java
 Date: Sep 28, 2022

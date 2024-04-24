@@ -59,7 +59,7 @@ public class Cylinder {
         return length;
     }
     public double getVolume(){ // uses volume formula
-        volume = (volume = Math.PI * (Math.pow(radius, 2)) * length);
+        // volume = (volume = Math.PI * (Math.pow(radius, 2)) * length);
         totalVol += volume;
         return volume;
     }

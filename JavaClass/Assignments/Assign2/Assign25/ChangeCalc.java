@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign2.Assign25;
+
 /*------------------------------------------------
 File: ChangeCalc.java
 Date: Oct 4, 2022

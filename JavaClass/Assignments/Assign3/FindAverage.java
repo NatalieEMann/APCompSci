@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign3;
+
 /*------------------------------------------------
 File: FindAverage.java
 Date: Dec 2, 2022

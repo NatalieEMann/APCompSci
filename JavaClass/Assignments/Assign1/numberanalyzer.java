@@ -1,3 +1,5 @@
+package JavaClass.Assignments.Assign1;
+
 /*
 Name: Natalie Mann
 Date: Wednesday September 14th 2022
