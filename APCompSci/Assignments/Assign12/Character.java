@@ -1,5 +1,7 @@
 package APCompSci.Assignments.Assign12;
 
+import java.util.Random;
+
 public abstract class Character {
     // Yeah none of this is really used for the soul purpose of making an entire rpg game would be a lot of work and more of final project type thing so I am not doing all that.
     // CLASSES USED: Barbarian, Cleric, Fighter, Paladin, Rogue, Warlock, Wizard
@@ -20,10 +22,26 @@ public abstract class Character {
     protected int trapDisarmCount;
     protected double weight;
     protected int weightLimit;
+    protected int hitDice;
+    public String enemy;
 
-    public Character( String name, int hp){
+
+    /**
+     * @param name
+     * @param hp
+     * @param hitDice
+     * @param weightLimit
+     * @param level
+     * @param xp
+     */
+    public Character(String name, int hp, int hitDice, int weightLimit, int level, int xp){
         this.name = name;
         this.hitPointsMax = hp;
+        hitPoints = hitPointsMax;
+        this.hitDice = hitDice;
+        this.weightLimit = weightLimit;
+        this.level = level;
+        this.xp = xp;
     }
 
     /**
@@ -103,14 +121,13 @@ public abstract class Character {
      * 
      * @param dmgTaken The amount of damage taken (hp)
      */
-    protected final void damageTaken(int dmgTaken) {
+    public final void damageTaken(int dmgTaken) {
         hitPoints -= dmgTaken;
         if (hitPoints <= 0) {
             hitPoints = 0;
             System.out.println("You are down...");
         }
     }
-
     /**
      * @param foundHealthPotions How many health potions you gained
      */
@@ -130,6 +147,10 @@ public abstract class Character {
      */
     protected final void addTrapDisarmKit(int foundTrapDisarm) {
         trapDisarmCount += foundTrapDisarm;
+    }
+    public void attack(Character enemy){
+        int damage = new Random().nextInt(hitDice) + 1;
+        enemy.damageTaken(damage);
     }
 
     /**

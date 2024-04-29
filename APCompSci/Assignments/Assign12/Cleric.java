@@ -1,12 +1,12 @@
 package APCompSci.Assignments.Assign12;
 
 public class Cleric extends Character{
-    public Cleric(String name, int hp){
-        super(name, hp);
+    public Cleric(String name){
+        super(name, 11, 10, 120, 1, 0);
     }
     
     @Override
     public void action(){
-        System.out.println("Cleric heals the lowest character");
+        System.out.println(this.name + " heals the lowest character");
     }
 }

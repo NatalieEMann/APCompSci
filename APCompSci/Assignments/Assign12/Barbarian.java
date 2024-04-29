@@ -1,12 +1,13 @@
 package APCompSci.Assignments.Assign12;
 
 public class Barbarian extends Character {
-    public Barbarian(String name, int hp){
-        super(name, hp);
+    public Barbarian(String name){
+       super(name, 15, 10, 210, 1, 0);
+
     }
     
     @Override
     public void action(){
-        System.out.println("Barbarian enters rage");
+        System.out.println(this.name + " enters rage");
     }
 }
