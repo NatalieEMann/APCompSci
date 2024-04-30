@@ -121,13 +121,16 @@ public abstract class Character {
      * 
      * @param dmgTaken The amount of damage taken (hp)
      */
-    public final void damageTaken(int dmgTaken) {
+    public final void damageTaken(int dmgTaken, Character enemy) {
+        
         hitPoints -= dmgTaken;
         if (hitPoints <= 0) {
             hitPoints = 0;
-            System.out.println("You are down...");
+            System.out.println(enemy.getName() + " is down...");
         }
     }
+    protected abstract String getName();
+
     /**
      * @param foundHealthPotions How many health potions you gained
      */
@@ -150,7 +153,7 @@ public abstract class Character {
     }
     public void attack(Character enemy){
         int damage = new Random().nextInt(hitDice) + 1;
-        enemy.damageTaken(damage);
+        enemy.damageTaken(damage, enemy);
     }
 
     /**

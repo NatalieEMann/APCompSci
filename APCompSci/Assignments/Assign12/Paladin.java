@@ -9,4 +9,8 @@ public class Paladin extends Character{
     public void action(){
         System.out.println(this.name + " summons divine power");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }

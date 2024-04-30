@@ -9,4 +9,8 @@ public class Warlock extends Character {
     public void action(){
         System.out.println(this.name + " summons the gift of their patron and uses eldritch blast");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }

@@ -9,4 +9,8 @@ public class Rogue extends Character {
     public void action(){
         System.out.println(this.name + " sneakily stabs the enemy");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }

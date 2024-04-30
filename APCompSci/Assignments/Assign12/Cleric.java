@@ -9,4 +9,8 @@ public class Cleric extends Character{
     public void action(){
         System.out.println(this.name + " heals the lowest character");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }

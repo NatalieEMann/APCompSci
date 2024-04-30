@@ -10,4 +10,8 @@ public class Barbarian extends Character {
     public void action(){
         System.out.println(this.name + " enters rage");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }

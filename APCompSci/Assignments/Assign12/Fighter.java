@@ -8,4 +8,8 @@ public class Fighter extends Character{
     public void action(){
         System.out.println(this.name + " slices with their sword");
     }
+    @Override
+    public String getName(){
+        return this.name;
+    }
 }
