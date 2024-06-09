@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class RunGame {
     public static void main(String[] args) {
+        @SuppressWarnings("resource")
         Scanner input = new Scanner(System.in);
 
         Enemy goblin = new Enemy("Gob");
