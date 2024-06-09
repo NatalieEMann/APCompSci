@@ -31,22 +31,16 @@ public class Connect4 {
             int ch = input.nextInt();
             if(ch == 0){
                 gameFile = fileManager.load(1);
-                System.out.println(gameFile);
-                while (true) {
-                    int play = gameFile.get(0);
-                    gameFile.remove(0);
-                    System.out.println("it's Player " + playerTurn + "'s turn");
-                    printBoard();
-                    move(play, playerTurn);
-                    if (win) {
-                        System.out.println("Player " + playerTurn + " has won");
-                        break;
-                    }
-                    if (draw) {
-                        System.out.println("Somehow you managed to draw, nobody won");
-                        break;
-                    }
-                }
+                // System.out.println(gameFile);
+                readerMove();
+            } else if(ch == 1){
+                gameFile = fileManager.load(2);
+                // System.out.println(gameFile);
+                readerMove();
+            } else if(ch == 2){
+                gameFile = fileManager.load(3);
+                // System.out.println(gameFile);
+                readerMove();
             }
         } else if(choice == 2){
             System.exit(0);
@@ -83,6 +77,26 @@ public class Connect4 {
                 }
             }
             System.out.println("");
+        }
+    }
+
+    public static void readerMove(){
+        printBoard();
+        while (true) {
+            int play = gameFile.get(0);
+            System.out.println("it's Player " + playerTurn + "'s turn");
+            move(play, playerTurn);
+            System.out.println("");
+            printBoard();
+            if (win) {
+                System.out.println("Player " + playerTurn + " has won");
+                break;
+            }
+            if (draw) {
+                System.out.println("Somehow you managed to draw, nobody won");
+                break;
+            }
+            gameFile.remove(0);
         }
     }
 
