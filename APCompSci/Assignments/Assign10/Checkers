@@ -1,1 +1,267 @@
-In processing
+ final int squareSize = 80; // the square size
+ 
+ int storeX, storeY, xStart, xFinish, yStart, yFinish, jumpX, jumpY, whiteCount, blackCount; // variables for storing all the x and y's + the counting to determine when the game ends
+ 
+ PImage nahIdWin, whiteKing, blackKing , whitePiece, blackPiece; // each piece 
+ PImage[][] board;
+ 
+ final color darkSquare = color(176, 147, 70); // colors
+ final color lightSquare = color(112, 85, 13);
+ final color highlighting = color(0, 255, 0, 100);
+ 
+ boolean promote = false; // booleans to determine different things
+ boolean click = false; 
+ boolean turn = true; // black = true
+ boolean gameOver = false;
+ boolean doubleJump = false;
+ boolean jumping = false;
+ 
+ int transparency = 255;
+ 
+void setup() {
+  
+  size(640, 640);
+  
+  nahIdWin = loadImage("NahIdWin.jpg"); // load the images for each of the pieces + the beginning screen
+  
+  whiteKing = loadImage("WhiteKing.png"); 
+  blackKing = loadImage("BlackKing.png"); 
+  whitePiece = loadImage("WhitePiece.png");  
+  blackPiece = loadImage("BlackPiece.png");
+  
+  whiteKing.resize(60,60);
+  blackKing.resize(60,60);
+  whitePiece.resize(60,60);
+  blackPiece.resize(60,60);
+  
+  setPieces();
+}
+void draw(){
+  grid(); 
+  if (gameOver() == true){ // exits the program when it is game over
+    System.exit(0);  
+  } /* else {
+    System.out.println("Continue");
+  } */
+  if(millis() < 5000){ // my start up screen ;3
+    if (transparency > 0) { 
+    transparency -= 0.5; 
+    }
+    tint(255, transparency);
+    image(nahIdWin, 0, 0);
+    nahIdWin.resize(640,640);
+  }
+  tint(255, 255);
+}
+    
+void setPieces(){
+  board = new PImage[8][8];
+  
+  board[0][1] = whitePiece; //sets up all the pieces
+  board[0][3] = whitePiece;
+  board[0][5] = whitePiece;
+  board[0][7] = whitePiece;
+  board[1][0] = whitePiece;
+  board[1][2] = whitePiece;
+  board[1][4] = whitePiece;
+  board[1][6] = whitePiece;
+  board[2][1] = whitePiece;
+  board[2][3] = whitePiece;
+  board[2][5] = whitePiece;
+  board[2][7] = whitePiece;
+  
+  board[5][0] = blackPiece;
+  board[5][2] = blackPiece;
+  board[5][4] = blackPiece;
+  board[5][6] = blackPiece;
+  board[6][1] = blackPiece;
+  board[6][3] = blackPiece;
+  board[6][5] = blackPiece;
+  board[6][7] = blackPiece;
+  board[7][0] = blackPiece;
+  board[7][2] = blackPiece;
+  board[7][4] = blackPiece;
+  board[7][6] = blackPiece;
+  
+  promote = false; // the setup for booleans
+  click = false;
+  turn = true;
+  gameOver = false;
+  doubleJump = false;
+  
+}
+void grid(){
+  for(int x = 0; x < 8; x++){ // making the checkers grid
+    for(int y = 0; y < 8; y++){
+      if ((x+y)%2 == 0) fill(darkSquare);
+      else fill(lightSquare);
+      rect(x*squareSize, y*squareSize, squareSize, squareSize);//chessboard
+      if (board[y][x] != null){
+        image(board[y][x], (x*80)+10, (y*80)+10); //piece
+      } 
+      if(click){ // if the mouse is clicked, highlight
+        if(validMove(xStart, yStart, x, y, turn, board)){
+          fill(highlighting);
+          rect(x*squareSize, y*squareSize, squareSize, squareSize);
+        }
+        if(y == yStart && x == xStart && board[y][x] != null){
+          fill(highlighting);
+          rect(x*squareSize, y*squareSize, squareSize, squareSize);
+        }
+      }
+    } 
+  }
+}
+
+void mouseClicked(){
+  if(click){ // get the original mouse click and the click after that 
+    xFinish = floor((mouseX) /80);
+    yFinish = floor((mouseY) / 80);
+    if(validMove(xStart, yStart, xFinish, yFinish, turn, board)){ // make sure it is a valid move
+      board = movePiece(xStart, yStart, xFinish, yFinish, board); // than move the piece and the return = the baord
+      click = false;
+    } else {
+      yStart = yFinish;
+      xStart = xFinish;
+      click = true;
+    }
+  } else { // otherwise make the start the mouse and click is still true
+    xStart = floor((mouseX) / 80);
+    yStart = floor((mouseY) / 80);
+    click = true;
+  }
+}
+
+PImage[][] movePiece(int x, int y, int x1, int y1, PImage[][] Board){ // moves the pieces
+    if(board[y][x] == whitePiece){ // the kings
+      if(y1 == 7){
+        Board[y][x] = whiteKing; // promotes
+        promote = true;
+        doubleJump = false;
+      }
+    } else if(board[y][x] == blackPiece){
+        if(y1 == 0){
+          Board[y][x] = blackKing;
+          promote = true;
+          doubleJump = false;
+      }
+    }
+    Board[y1][x1] = Board[y][x]; // move the piece to the new square
+    Board[y][x] = null; // remove the original piece
+    if(abs(x-x1)==2){
+      Board[(y+y1)/2][(x+x1)/2] = null;
+      if (!promote) {//can jump again
+      if (validMove(x1, y1, x1+2, y1+2, turn, Board) || validMove(x1, y1, x1+2, y1-2, turn, Board) ||
+        validMove(x1, y1, x1-2, y1+2, turn, Board) || validMove(x1, y1, x1-2, y1-2, turn, Board)) { // forces jump
+        turn = !turn;
+        doubleJump = true;
+        jumpY = y1;
+        jumpX = x1;
+      } else {
+        doubleJump = false;
+      }
+      }
+    }
+    promote = false;
+    if(jump(!turn)){
+      jumping = true;
+    } else {
+      jumping = false;
+    }
+    turn = !turn;
+    return Board;
+}
+
+
+boolean validMove(int xStart, int yStart, int xFinish, int yFinish, boolean turn, PImage[][] Board){ // checks through to make sure the move is valid
+  if(yFinish < 0 || yFinish > 7 || xFinish < 0 || xFinish > 7 || yStart < 0 || yStart > 7 || xStart < 0 || xStart > 7){ // make sure it isn't at the end of the board
+    return false;
+  }
+  if(doubleJump){ // check for not doublejump
+    if(yStart!=jumpY || xStart != jumpX || abs(xFinish-xStart) != 2){
+      return false;
+    }
+  }
+  if(jumping){
+    if(abs(xFinish-xStart) != 2) return false; // if you can not jump, not valid move
+  }
+  if(!turn){
+    if(Board[yStart][xStart] == whitePiece){
+      if(abs(xFinish-xStart) == 1 && yFinish - 1 == yStart && Board[yFinish][xFinish] == null){
+        return true;
+      }
+      if((abs(xFinish-xStart) == 2 && yFinish - 2 == yStart && Board[yFinish][xFinish] == null) && (Board[yStart+1][(xStart+xFinish)/2] == blackPiece || Board[yStart+1][(xStart+xFinish)/2] == blackKing)){ // jumping
+        return true;
+      }
+    } else if(Board[yStart][xStart] == whiteKing){
+             if(abs(xFinish-xStart) == 1 && abs(yFinish-yStart) == 1 && Board[yFinish][xFinish] == null){
+                return true;
+              }
+              if((abs(xFinish-xStart) == 2 && abs(yFinish-yStart) == 2 && Board[yFinish][xFinish] == null) && (Board[(yStart + yFinish)/2][(xStart+xFinish)/2] == blackPiece || Board[(yStart + yFinish)/2][(xStart+xFinish)/2] == blackKing)){ // jumping King
+                return true; 
+              }
+     }
+  } else {
+    if(Board[yStart][xStart] == blackPiece){
+      if(abs(xStart-xFinish) == 1 && yStart - 1 == yFinish && Board[yFinish][xFinish] == null){
+        return true;
+      }
+      if((abs(xFinish-xStart) == 2 && yStart -2 == yFinish && Board[yFinish][xFinish] == null) && (Board[yStart-1][(xStart+xFinish)/2] == whitePiece || Board[yFinish][xFinish] == whiteKing)){ // jumping
+        return true;
+      }
+    } else if(Board[yStart][xStart] == blackKing){
+             if(abs(xFinish-xStart) == 1 && abs(yFinish-yStart) == 1 && Board[yFinish][xFinish] == null){
+                return true;
+             }
+             if((abs(xFinish-xStart) == 2 && abs(yFinish-yStart) == 2 && Board[yFinish][xFinish] == null) && (Board[(yStart + yFinish)/2][(xStart+xFinish)/2] == whitePiece || Board[(yStart + yFinish)/2][(xStart+xFinish)/2] == whiteKing)){ // jumping King
+                return true;
+             }  
+     }
+  }
+  return false;
+}
+
+boolean gameOver(){
+  for(int y = 0; y < 8; y++){
+    for(int x = 0; x < 8; x++){
+      if(board[y][x] == whitePiece){
+        whiteCount++;
+      } else if(board[y][x] == blackPiece){
+        blackCount++;
+      }
+    }
+  }
+  if(whiteCount <=1 || blackCount <=1){
+    whiteCount = 0;
+    blackCount = 0;
+    return true;
+  }
+  whiteCount = 0;
+  blackCount = 0;
+  return false;
+}
+
+boolean jump(boolean turn){
+  for(int x = 0; x < 8; x++){
+    for(int y = 0; y < 8; y++){
+       if(turn){
+          if((board[y][x] == whitePiece || board[y][x] == whiteKing) || (board[y][x] == null)){ // making sure it isn't black
+            continue;  
+            }
+        } else {
+         if((board[y][x] == blackPiece || board[y][x] == blackKing) || (board[y][x] == null)){
+           continue;
+         }
+       }
+       for(int y1 = 0; y1 < 8; y1++){
+         for(int x1 = 0; x1 < 8; x1++){
+           if(validMove(x, y, x1, y1, turn, board) && abs(y1-y)==2){
+             return true;
+           }
+         }
+       }
+    }
+  }
+  return false;
+}
+
